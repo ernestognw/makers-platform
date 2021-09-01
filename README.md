@@ -20,8 +20,7 @@ This is the repository for "Makers Program" for Tec de Monterrey. This project w
 | Nombre                         | Email                    | Rol                 |
 | ------------------------------ | ------------------------ | ------------------- |
 | Azael Jesús Cortés Capetillo   | azael.capetillo@tec.mx   | Cliente             |
-| Julio Noriega Velasco          | jnoriega@tec.mx          | Asociado al Cliente |
-| Alejandra Díaz de León Lastras | adiazdeleon@tec.mx       | Asociado al Cliente |
+| Alvaro Cheyenne de Jesus Valdez| chdejesus@tec.mx         | Asociado al Cliente |
 
 
 ### Environment URLS
@@ -32,30 +31,26 @@ This is the repository for "Makers Program" for Tec de Monterrey. This project w
 
 | Name                              | Email              | Rol        |
 | --------------------------------- | ------------------ | ---------- |
-| Aldo Cervantes                    | A01039261@itesm.mx | Desarrollo |
-| Diego Astiazarán                  | A01243969@itesm.mx | Desarrollo |
-| Erik Torres                       | A01196362@itesm.mx | Desarrollo |
-| Héctor Morales                    | A01193139@itesm.mx | Desarrollo |
-| Alejandro Lara                    | A00820153@itesm.mx | Desarrollo |
-| Diego Treviño                     | A00819313@itesm.mx | Desarrollo |
-| Jorge Ramirez                     | A01088601@itesm.mx | Desarrollo |
+| Ernesto García                    | A00820783@itesm.mx | Desarrollo |
+| Alan Macedo                       | A01366288@itesm.mx | Desarrollo |
+| Alberto García                    | A00822649@itesm.mx | Desarrollo |
 
 ### Technology Stack
 | Technology    | Version      |
 | ------------- | -------------|
 | Docker        | 19.03.2      |
 | Ruby          | 3.0.0        |
-| Rails         |  5.2.3       |
+| Rails         |  6.1.3       |
 | PostgreSQL    |  9.6.15      |
 
 ### Management tools
 
 You should ask for access to this tools if you don't have it already:
 
-* [Github repo](https://github.com/ProyectoIntegrador2018/makers)
-* [Backlog](https://github.com/ProyectoIntegrador2018/makers/projects)
+* [Github repo](https://github.com/ernestognw/makers-platform)
+* [Backlog](https://makers-platform.atlassian.net/jira/software/projects/MKR/)
 * [Heroku](https://makersprogram.herokuapp.com/)
-* [Documentation](https://drive.google.com/open?id=18KPPQ1VZwSyOb2UREPyWXmzGm2MxcWDy)
+* [Documentation](https://drive.google.com/drive/u/2/folders/0AD-0tjERzkMkUk9PVA)
 
 ## Development
 
@@ -74,9 +69,9 @@ $ git clone https://github.com/ProyectoIntegrador2018/makers.git
 2. Add Needed Ruby Environmental variables
 
 They should be added into a file `config/local_env.yml` or be setup into your environment including the following variables:
-```bash
-TEC_USERNAME="email_address"
-TEC_PASSWORD="password"
+```yml
+TEC_USERNAME: "email_address"
+TEC_PASSWORD: "password"
 ```
 
 3. Navigate to the `makers/` directory and run:
