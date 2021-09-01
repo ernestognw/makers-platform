@@ -44,7 +44,7 @@ This is the repository for "Makers Program" for Tec de Monterrey. This project w
 | Technology    | Version      |
 | ------------- | -------------|
 | Docker        | 19.03.2      |
-| Ruby          | 2.5.3        |
+| Ruby          | 3.0.0        |
 | Rails         |  5.2.3       |
 | PostgreSQL    |  9.6.15      |
 
@@ -71,9 +71,9 @@ After installing, you can follow this simple steps:
 $ git clone https://github.com/ProyectoIntegrador2018/makers.git
 ```
 
-2. Add Needed Ruby Enviormental variables
+2. Add Needed Ruby Environmental variables
 
-They should be added into a file `config/local_env.yml` or be setup into your enviorment including the following variables:
+They should be added into a file `config/local_env.yml` or be setup into your environment including the following variables:
 ```bash
 TEC_USERNAME="email_address"
 TEC_PASSWORD="password"
