@@ -68,6 +68,7 @@ group :test do
   gem 'timecop'
   gem 'rspec-retry'
   gem 'shoulda-matchers'
+  gem 'rexml'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

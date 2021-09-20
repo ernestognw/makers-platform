@@ -12,9 +12,8 @@ default: &default
 
 development:
   <<: *default
-  database: "makers_dev"
 
-staging:
+test:
   <<: *default
 
 production:
