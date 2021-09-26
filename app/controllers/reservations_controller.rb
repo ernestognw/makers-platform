@@ -34,8 +34,8 @@ class ReservationsController < ApplicationController
   def edit
   end
 
-  # POST /equipment/1//reservations
-  # POST /equipment/1//reservations.json
+  # POST /equipment/1/reservations
+  # POST /equipment/1/reservations.json
   def create
     @reservation = @reservations_scope.new(reservation_params)
     @reservation.user = current_user

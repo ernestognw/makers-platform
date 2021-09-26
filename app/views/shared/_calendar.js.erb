@@ -53,7 +53,7 @@ function buildEvent(event) {
       "start_time": event.start.toISOString(),
       "end_time": event.end.toISOString(),
       'help_needed': $('#help_needed').is(':checked')? true : false,
-      "status": $('#blockStatus').is(':checked')? 'blocked': 'pending'
+      "status": $('#blockStatus').is(':checked')? 'blocked': 'confirmed'
     }
   };
 }
