@@ -4,6 +4,7 @@ require 'capybara/rails'
 require 'capybara/rspec'
 require 'capybara/dsl'
 require 'pundit/rspec'
+require 'selenium-webdriver'
 require 'rspec/rails'
 require 'rspec/retry'
 require 'devise'
@@ -26,18 +27,25 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
-  Capybara.register_driver :docker_firefox do |app|
-    caps = Selenium::WebDriver::Remote::Capabilities.firefox
-    caps.css_selectors_enabled = true
-    caps.javascript_enabled = true
-    caps.takes_screenshot = true
-    Capybara::Selenium::Driver.new(app,
-                                   browser: :remote,
-                                   url: "#{ENV['SELENIUM_URL']}/wd/hub",
-                                   desired_capabilities: caps)
+  Capybara.register_driver :docker_chrome do |app|
+    capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
+      "goog:chromeOptions": {
+        "args": [
+          "--headless",
+          "--disable-gpu",
+          "--no-sandbox"
+        ]
+      }
+    )
+    Capybara::Selenium::Driver.new(
+      app,
+      browser: :remote,
+      url: "#{ENV['SELENIUM_URL']}/wd/hub",
+      capabilities: capabilities
+    )
   end
 
-  Capybara.javascript_driver = :docker_firefox
+  Capybara.javascript_driver = :docker_chrome
   Capybara.server_port = 3001
   Capybara.server_host = (ENV['LOCAL_IP']).to_s
   Capybara.app_host = "http://#{ENV['LOCAL_IP']}:#{Capybara.server_port}"

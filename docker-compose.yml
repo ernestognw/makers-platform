@@ -54,11 +54,15 @@ services:
       SELENIUM_URL: "http://browser:4444"
     depends_on:
       - db
-      - firefox
+      - chrome
 
-  firefox:
-    image: selenium/standalone-firefox-debug:3.14.0
+  chrome:
+    image: selenium/standalone-chrome-debug:3.141.59
     container_name: browser
+    platform: linux/amd64
+    shm_size: '2gb' 
+    environment:
+      - JAVA_OPTS=-Dwebdriver.chrome.whitelistedIps=
     volumes:
       - "/dev/shm:/dev/shm"
     ports:

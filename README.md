@@ -136,7 +136,7 @@ Or if you want to run a specific spec you can enter the test container with `doc
 $ rspec spec/models/user_spec.rb
 ```
 
-**Sidenote:** When you open a bash shell, docker doesn't always run the `firefox` instance (needed for running js-relying tests) so make sure you have it running with `docker-compose up browser`.
+**Sidenote:** When you open a bash shell, docker doesn't always run the `chrome` instance (needed for running js-relying tests) so make sure you have it running with `docker-compose up browser`.
 
 #### Debugging
 
