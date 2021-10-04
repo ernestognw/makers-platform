@@ -8,5 +8,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      - name: Setup database
+        run: docker-compose run test bash -c "rails db:create && rails db:migrate && rails db:seed"
       - name: Tests
         run: docker-compose up --exit-code-from test test
