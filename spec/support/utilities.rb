@@ -40,7 +40,7 @@ def readable_date_range(start_time, end_time)
 end 
 
 def readable_date(time)
-  time.utc.strftime('%a %b %d %Y%k:%M')
+  time.utc.strftime('%a %b %d %Y %k:%M')
 end
 
 def tomorrow
