@@ -24,7 +24,7 @@ feature 'User creates reservation', js: true do
 
     expect(emails.count).to eq(1)
     expect(last_email.to).to eq [@user.email]
-    expect(last_email.subject).to eq 'Tu reservación ha sido puesta en Confirmada'
+    expect(last_email.subject).to eq 'Tu reservación ha sido Confirmada'
   end
 
   scenario 'that exceeds equipment max usage ' do
