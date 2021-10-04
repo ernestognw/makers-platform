@@ -15,6 +15,7 @@ class Reservation < ApplicationRecord
 
   after_save :rest_time_reservation, unless: Proc.new { self.status == "blocked"}
   after_save :check_status, if: -> { previous_changes.include?(:status) }
+  after_create :check_status
 
   def available_at(st, et, day)
     slots = equipment.available_hours
