@@ -93,6 +93,10 @@ class Reservation < ApplicationRecord
   def accept
   end
 
+  def check_status
+    MakersMailer.status_email(self).deliver_now if not blocked?
+  end
+
   private
 
   def bigger(time_a, time_b)
@@ -135,9 +139,5 @@ class Reservation < ApplicationRecord
                                         updated_at: Time.now, user_id: user_id)
       new_reservation.save
     end
-  end
-
-  def check_status
-    MakersMailer.status_email(self).deliver_now if not blocked?
   end
 end
