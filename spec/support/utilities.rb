@@ -35,12 +35,12 @@ end
 
 def readable_date_range(start_time, end_time)
   s = readable_date(start_time) + ' -'
-  s.concat end_time.utc.strftime(' %a %b %e %Y') if start_time.to_date != end_time.to_date
-  s + end_time.utc.strftime(' %k:%M')
-end
+  s.concat end_time.utc.strftime('%a %b %d %Y') if start_time.to_date != end_time.to_date
+  s + end_time.utc.strftime('%k:%M')
+end 
 
 def readable_date(time)
-  time.utc.strftime('%a %b %e %Y %k:%M')
+  time.utc.strftime('%a %b %d %Y%k:%M')
 end
 
 def tomorrow
