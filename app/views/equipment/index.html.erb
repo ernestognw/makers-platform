@@ -10,6 +10,15 @@
           <label><input type="checkbox" checked name="showtags" id="showtags"> <small>mostrar tags</small></label>
         </div>
         <section class="filter">
+          <p class="title">Nombre</p>
+          <select multiple name="materiales" id="select-nombre">
+            <option value="">Nombre</option>
+            <% @equipment_scope.each do |e|  %>
+              <option value="<%= e.id %>"><%= e.name %></option>
+            <% end %>
+          </select>
+        </section>
+        <section class="filter">
           <p class="title">Material</p>
           <select multiple name="materiales" id="select-material">
             <option value="">Materiales</option>
@@ -83,12 +92,13 @@
 <% content_for :scripts do %>
   <script>
     const $resultDivs = $('article.SearchResult');
-    let data = <%= raw(@equipment_scope.as_json(only: [:capabilities, :materials], include:[{capabilities: {only: :id}}, {materials: {only: :id}}]).to_json) %>;
+    let data = <%= raw(@equipment_scope.as_json(only: [:capabilities, :materials, :id], include:[{capabilities: {only: :id}}, {materials: {only: :id}}]).to_json) %>;
     // Prepare data for easier manipulation (remove object info)
     data = data.map((eq, i) => {
       eq.forindex = i;
       eq.capabilities = eq.capabilities.map(c => c.id);
       eq.materials = eq.materials.map(m => m.id);
+      eq.name = [eq.id]
       return eq;
     });
 
@@ -105,11 +115,14 @@
 
     const filterMaterials = filterOnCollection('materials');
     const filterCapabilities = filterOnCollection('capabilities');
+    const filterName = filterOnCollection('name');
 
     function filterResults() {
       let materialsQuery = sel1.getValue();
       let capQuery = sel2.getValue();
-      const results = filterCapabilities(filterMaterials(data, materialsQuery), capQuery).map(r => r.forindex);;
+      let name = sel3.getValue();
+      const results = filterName(filterCapabilities(filterMaterials(data, materialsQuery), capQuery), name).map(r => r.forindex);
+      console.log(results);
       $resultDivs.hide();
       results.forEach(function(index) {
         $resultDivs.eq(index).show();
@@ -137,9 +150,12 @@
     };
     let $sel1 = $('#select-material').selectize(opts);
     let $sel2 = $('#select-capacidad').selectize(opts);
+    let $sel3 = $('#select-nombre').selectize(opts);;
     let sel1 = $sel1[0].selectize;
     let sel2 = $sel2[0].selectize;
+    let sel3 = $sel3[0].selectize;
     sel1.on('change', filterResults);
     sel2.on('change', filterResults);
+    sel3.on('change', filterResults);
   </script>
 <% end %>
