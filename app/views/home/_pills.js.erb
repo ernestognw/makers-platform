@@ -22,8 +22,10 @@ function drawPills(list, color) {
     }
     $('.pillBox').append(pillsHTML);
 
-    $('.pill').click(function() {
+    $('.pill.' + color).click(function() {
       const pill = $(this).remove();
+
+      const eraseCross = jQuery('<div>', { class: 'eraseCross', html: 'x'});
 
       let queryField, tagBox;
       $('.pillBox').empty();
@@ -40,7 +42,8 @@ function drawPills(list, color) {
           drawPills(capabilities[pill.text()], 'white');
       }
       queryField.hide();
-      tagBox.html(pill.addClass('p-3 px-5'));
+      tagBox.append(pill.addClass('p-3 px-5'));
+      tagBox.append(eraseCross);
       tagBox.parent().css(center_css);
     });
 }
