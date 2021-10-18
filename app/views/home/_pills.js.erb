@@ -25,7 +25,7 @@ function drawPills(list, color) {
     $('.pill.' + color).click(function() {
       const pill = $(this).remove();
 
-      const eraseCross = jQuery('<div>', { class: 'eraseCross', html: 'x'});
+      const eraseCross = jQuery('<div>', { class: 'eraseCross', html: '<%= j inline_svg_tag "icons/round-delete-button.svg", class: 'text-warning', size: '1.3em' %>'});
 
       let queryField, tagBox;
       $('.pillBox').empty();
