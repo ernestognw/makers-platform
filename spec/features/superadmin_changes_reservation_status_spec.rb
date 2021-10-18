@@ -14,13 +14,13 @@ feature 'SuperAdmin changes reservation status', js: true do
 
   context 'that they own' do
     before do
-      create :reservation, :pending, user: @admin, equipment: @equipment
+      create :reservation, :confirmed, user: @admin, equipment: @equipment
       visit lab_lab_space_equipment_path(@lab, @lab_space, @equipment)
       find('.fc-timegrid-event-harness').click
     end
 
     after do
-      expect(emails.count).to eq(2)
+      expect(emails.count).to eq(1)
       expect(last_email.to).to eq [@admin.email]
     end
 
@@ -34,35 +34,17 @@ feature 'SuperAdmin changes reservation status', js: true do
       expect(first_reservation.status).to eq('cancelled')
       expect(last_email.subject).to eq 'Tu reservación ha sido Cancelada'
     end
-
-    scenario 'to confirmed' do
-      click_button 'Confirmar'
-
-      expect(page).to have_selector('#detailModal', visible: false)
-      expect(page).to have_selector('.fc-timegrid-event-harness', count: 1)
-      expect(first_reservation.status).to eq('confirmed')
-      expect(last_email.subject).to eq 'Tu reservación ha sido Confirmada'
-    end
-
-    scenario 'to rejected' do
-      click_button 'Rechazar'
-
-      expect(page).to have_selector('#detailModal', visible: false)
-      expect(page).not_to have_selector('.fc-timegrid-event-harness')
-      expect(first_reservation.status).to eq('rejected')
-      expect(last_email.subject).to eq 'Tu reservación ha sido Rechazada'
-    end
   end
 
   context 'that another user owns' do
     before do
-      create :reservation, :pending, user: @user, equipment: @equipment
+      create :reservation, :confirmed, user: @user, equipment: @equipment
       visit lab_lab_space_equipment_path(@lab, @lab_space, @equipment)
       find('.fc-timegrid-event-harness').click
     end
 
     after do
-      expect(emails.count).to eq(2)
+      expect(emails.count).to eq(1)
       expect(last_email.to).to eq [@user.email]
     end
 
@@ -75,24 +57,6 @@ feature 'SuperAdmin changes reservation status', js: true do
       expect(page).not_to have_selector('.fc-timegrid-event-harness')
       expect(first_reservation.status).to eq('cancelled')
       expect(last_email.subject).to eq 'Tu reservación ha sido Cancelada'
-    end
-
-    scenario 'to confirmed' do
-      click_button 'Confirmar'
-
-      expect(page).to have_selector('#detailModal', visible: false)
-      expect(page).to have_selector('.fc-timegrid-event-harness', count: 1)
-      expect(first_reservation.status).to eq('confirmed')
-      expect(last_email.subject).to eq 'Tu reservación ha sido Confirmada'
-    end
-
-    scenario 'to rejected' do
-      click_button 'Rechazar'
-
-      expect(page).to have_selector('#detailModal', visible: false)
-      expect(page).not_to have_selector('.fc-timegrid-event-harness')
-      expect(first_reservation.status).to eq('rejected')
-      expect(last_email.subject).to eq 'Tu reservación ha sido Rechazada'
     end
   end
 end
